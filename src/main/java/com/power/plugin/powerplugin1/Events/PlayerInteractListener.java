@@ -4,10 +4,12 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.block.Block;
+import org.bukkit.entity.Cow;
 import org.bukkit.entity.Fireball;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
@@ -30,7 +32,7 @@ public class PlayerInteractListener implements Listener {
             Block hitBlock = ray.getHitBlock();
             World world = hitBlock.getWorld();
             world.strikeLightning(new Location(world, hitBlock.getX(), hitBlock.getY() + 1, hitBlock.getZ()));
-            event.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 20 * 10, 3));
+            world.createExplosion(new Location(world, hitBlock.getX(), hitBlock.getY() + 1, hitBlock.getZ()), 50F);
         }
 
     }
@@ -44,7 +46,7 @@ public class PlayerInteractListener implements Listener {
             if (stack == null) {
                 return;
             }
-            if (stack.getType() == Material.STICK) {
+            if (stack.getType() == Material.COPPER_INGOT) {
                 hasCopper = true;
                 return;
 
@@ -66,17 +68,25 @@ public class PlayerInteractListener implements Listener {
             }
             if (stack.getType() == Material.LIGHTNING_ROD) {
                 int distanceToSpawn = 2;
-                double fireballVelocity = 1.5;
+                double fireballVelocity = 0.01;
 
                 Location eyeLocation = player.getEyeLocation();
                 Vector direction = eyeLocation.getDirection();
 
                 Location fireballSpawnPoint = eyeLocation.add(direction.clone().multiply(distanceToSpawn));
-
+                Cow cow = player.getWorld().spawn(fireballSpawnPoint, Cow.class);
                 Fireball fireball = player.getWorld().spawn(fireballSpawnPoint, Fireball.class);
                 fireball.setDirection(direction);
-                fireball.setVelocity(direction.multiply(fireballVelocity));
+                fireball.setVelocity(direction.normalize().multiply(fireballVelocity));
+                fireball.addPassenger(cow);
+                System.out.println(direction.normalize().multiply(fireballVelocity));
             }
+        }
+    }
+    @EventHandler
+    public void onProjectileHit(ProjectileHitEvent event){
+        if (event.getEntity() instanceof Fireball fireball) {
+            fireball.getWorld().createExplosion(fireball.getLocation(), 100);
         }
     }
 }
