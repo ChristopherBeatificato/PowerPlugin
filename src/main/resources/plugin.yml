@@ -1,0 +1,9 @@
+name: PowerPlugin1
+version: '${version}'
+main: com.power.plugin.powerplugin1.PowerPlugin1
+api-version: '1.20'
+commands:
+  diamond:
+    description: Gives the player 3 diamonds
+    usage: /diamond
+

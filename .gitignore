@@ -1,0 +1,67 @@
+# Gradle-specific files
+.gradle/
+build/
+out/
+!gradle-wrapper.jar
+
+# Eclipse IDE files
+.classpath
+.project
+.settings/
+
+# IntelliJ IDEA files
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# macOS system files
+.DS_Store
+
+# Compiled class files
+**/*.class
+
+# Temporary files and directories
+*~
+*.swp
+*.swo
+*.tmp
+*.temp
+
+# Logs and databases
+*.log
+*.ldb
+*.sqlite
+
+# JetBrains IDE-specific files
+atlassian-ide-plugin.xml
+
+# Windows image file caches
+Thumbs.db
+
+# Folder config file
+Desktop.ini
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+# VS Code directories
+.vscode/
+
+# Windows Installer files
+*.cab
+*.msi
+*.msm
+*.msp
+
+# Windows shortcuts
+*.lnk
+
+# JetBrains Rider
+.idea/
+*.sln.iml
+
+# ASP.NET Scaffolding
+ScaffoldingReadMe.txt
+
+run/
