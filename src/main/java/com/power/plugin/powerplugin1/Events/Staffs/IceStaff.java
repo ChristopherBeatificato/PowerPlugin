@@ -1,4 +1,4 @@
-package com.power.plugin.powerplugin1.Events;
+package com.power.plugin.powerplugin1.Events.Staffs;
 
 import org.bukkit.Material;
 import org.bukkit.entity.Player;

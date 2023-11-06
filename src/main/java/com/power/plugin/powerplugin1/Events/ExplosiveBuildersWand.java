@@ -10,23 +10,21 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.RayTraceResult;
 
-public class LightningStaff implements Listener {
+public class ExplosiveBuildersWand implements Listener {
     @EventHandler
     public void onPlayerInteract(PlayerInteractEvent event) {
         ItemStack stack = event.getItem();
         if (stack == null) {
             return;
         }
-        if (stack.getType() == Material.LIGHTNING_ROD) {
+        if (stack.getType() == Material.SPYGLASS) {
             RayTraceResult ray = event.getPlayer().rayTraceBlocks(120);
             if (ray == null || ray.getHitBlock() == null) {
                 return;
             }
             Block hitBlock = ray.getHitBlock();
             World world = hitBlock.getWorld();
-            world.strikeLightning(new Location(world, hitBlock.getX(), hitBlock.getY() + 1, hitBlock.getZ()));
             world.createExplosion(new Location(world, hitBlock.getX(), hitBlock.getY() + 1, hitBlock.getZ()), 50F);
         }
     }
 }
-//Bukkit.broadcast(Component.text("juicer"));

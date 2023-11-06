@@ -1,4 +1,4 @@
-package com.power.plugin.powerplugin1.Events;
+package com.power.plugin.powerplugin1.Events.Staffs;
 
 import com.destroystokyo.paper.event.block.BlockDestroyEvent;
 import io.papermc.paper.event.block.BlockBreakBlockEvent;
@@ -19,6 +19,7 @@ import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.Vector;
+import org.eclipse.aether.metadata.Metadata;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,14 +53,13 @@ public class FireStaff implements Listener {
     @EventHandler
     public void onProjectileHit(ProjectileHitEvent event){
         if (event.getEntity() instanceof Fireball fireball) {
-            fireball.getWorld().createExplosion(fireball.getLocation(), 100);
+            fireball.getWorld().createExplosion(fireball.getLocation(), 100, true, false);
         }
     }
     @EventHandler
     public void onEntityDamage(EntityDamageByEntityEvent event) {
         if (event.getEntity() instanceof Mob) {
             if (event.getDamager() instanceof Player player) {
-                System.out.println("here1");
                 boolean hasAmethyst = false;
                 for (ItemStack stack :
                         player.getInventory().getContents()) {
@@ -73,12 +73,6 @@ public class FireStaff implements Listener {
                     event.getEntity().setFireTicks(20 * 8);
                 }
             }
-        }
-    }
-    @EventHandler
-    public void onBlockBreak(EntityExplodeEvent event){
-        if (event.getEntity() instanceof Fireball){
-            event.setCancelled(true);
         }
     }
 }
