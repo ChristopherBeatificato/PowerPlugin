@@ -19,5 +19,4 @@ public class DiamondCommand implements Listener {
         }
         return false;
     }
-    public void onCommand(Player)
 }
