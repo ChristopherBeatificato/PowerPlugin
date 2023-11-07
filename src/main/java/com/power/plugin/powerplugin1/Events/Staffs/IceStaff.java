@@ -15,18 +15,12 @@ public class IceStaff implements Listener {
     public void onLeftClick(PlayerInteractEvent event) {
         if (event.getAction().isLeftClick()) {
             Player player = event.getPlayer();
-            boolean hasCopper = false;
             ItemStack stack = event.getItem();
             if (stack == null) {
                 return;
             }
             if (stack.getType() == Material.STICK) {
-                hasCopper = true;
-                return;
-
-            }
-            if (hasCopper) {
-                event.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 20 * 8, 10));
+                player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 20 * 8, 2));
             }
         }
     }

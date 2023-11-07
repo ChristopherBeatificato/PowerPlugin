@@ -25,7 +25,7 @@ public class LightningStaff implements Listener {
             Block hitBlock = ray.getHitBlock();
             World world = hitBlock.getWorld();
             world.strikeLightning(new Location(world, hitBlock.getX(), hitBlock.getY() + 1, hitBlock.getZ()));
-            world.createExplosion(new Location(world, hitBlock.getX(), hitBlock.getY() + 1, hitBlock.getZ()), 50F);
+            world.createExplosion(new Location(world, hitBlock.getX(), hitBlock.getY() + 1, hitBlock.getZ()), 1.3F, true, false);
         }
     }
 }

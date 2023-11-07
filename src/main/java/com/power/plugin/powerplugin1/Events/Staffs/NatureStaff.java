@@ -22,10 +22,11 @@ public class NatureStaff implements Listener {
                 return;
             }
             if (stack.getType() == Material.VINE) {
-                player.damage(4, ExperienceOrb);
+                player.damage(7, ExperienceOrb);
                 for (Player other: Bukkit.getOnlinePlayers()) {
                     if (other.getLocation().distance(player.getLocation()) <= 5){
                         other.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 20 * 4, 1));
+                        player.removePotionEffect(PotionEffectType.REGENERATION);
                     }
                 }
             }

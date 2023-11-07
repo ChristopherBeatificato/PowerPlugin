@@ -15,18 +15,14 @@ public class WindStaff implements Listener {
     public void onPlayerInteract(PlayerInteractEvent event){
         if (event.getAction().isLeftClick()) {
             Player player = event.getPlayer();
-            boolean hasHoe = false;
             ItemStack stack = event.getItem();
 
             if (stack == null) {
                 return;
             }
             if (stack.getType() == Material.DIAMOND_HOE) {
-                    hasHoe = true;
-                    return;
-            }
-            if (hasHoe) {
-                    player.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, 20 * 8, 1));
+                player.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, 20 * 8, 5));
+
             }
         }
     }

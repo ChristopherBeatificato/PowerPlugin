@@ -1,4 +1,4 @@
-/*package com.power.plugin.powerplugin1.Events.Staffs;
+package com.power.plugin.powerplugin1.Events.Staffs;
 
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -25,9 +25,8 @@ public class EarthStaff implements Listener {
                 }
                 Block hitBlock = ray.getHitBlock();
                 World world = hitBlock.getWorld();
-                hitBlock.getWorld().setType(new Location(world, hitBlock.getX(), hitBlock.getY() + 1, hitBlock.getZ(), Material.STONE);
             }
         }
     }
 }
- */
+

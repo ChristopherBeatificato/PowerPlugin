@@ -36,24 +36,24 @@ public class FireStaff implements Listener {
             }
             if (stack.getType() == Material.END_ROD) {
                 int distanceToSpawn = 2;
-                double fireballVelocity = 0.01;
+                double fireballVelocity = 0.8;
 
                 Location eyeLocation = player.getEyeLocation();
                 Vector direction = eyeLocation.getDirection();
 
                 Location fireballSpawnPoint = eyeLocation.add(direction.clone().multiply(distanceToSpawn));
-                Cow cow = player.getWorld().spawn(fireballSpawnPoint, Cow.class);
+                //Cow cow = player.getWorld().spawn(fireballSpawnPoint, Cow.class);
                 Fireball fireball = player.getWorld().spawn(fireballSpawnPoint, Fireball.class);
                 fireball.setDirection(direction);
                 fireball.setVelocity(direction.normalize().multiply(fireballVelocity));
-                fireball.addPassenger(cow);
+                //fireball.addPassenger(cow);
             }
         }
     }
     @EventHandler
     public void onProjectileHit(ProjectileHitEvent event){
         if (event.getEntity() instanceof Fireball fireball) {
-            fireball.getWorld().createExplosion(fireball.getLocation(), 100, true, false);
+            fireball.getWorld().createExplosion(fireball.getLocation(), 2, true, false);
         }
     }
     @EventHandler
