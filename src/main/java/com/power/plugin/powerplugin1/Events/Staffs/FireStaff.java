@@ -44,6 +44,7 @@ public class FireStaff implements Listener {
                 Location fireballSpawnPoint = eyeLocation.add(direction.clone().multiply(distanceToSpawn));
                 //Cow cow = player.getWorld().spawn(fireballSpawnPoint, Cow.class);
                 Fireball fireball = player.getWorld().spawn(fireballSpawnPoint, Fireball.class);
+                fireball.setYield(0);
                 fireball.setDirection(direction);
                 fireball.setVelocity(direction.normalize().multiply(fireballVelocity));
                 //fireball.addPassenger(cow);

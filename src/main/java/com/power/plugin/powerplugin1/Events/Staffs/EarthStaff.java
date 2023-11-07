@@ -25,8 +25,19 @@ public class EarthStaff implements Listener {
                 }
                 Block hitBlock = ray.getHitBlock();
                 World world = hitBlock.getWorld();
+<<<<<<< Updated upstream
+=======
+                if (1 == 1){
+                    hitBlock.getWorld().setType(new Location(world, hitBlock.getX(), hitBlock.getY() + 1, hitBlock.getZ()), Material.STONE);
+                    hitBlock.getWorld().setType(new Location(world, hitBlock.getX(), hitBlock.getY() + 2, hitBlock.getZ()), Material.STONE);
+                    hitBlock.getWorld().setType(new Location(world, hitBlock.getX(), hitBlock.getY() + 3, hitBlock.getZ()), Material.STONE);
+                }
+>>>>>>> Stashed changes
             }
         }
     }
 }
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
