@@ -1,6 +1,7 @@
 package com.power.plugin.powerplugin1.Events.Staffs;
 
 import com.destroystokyo.paper.event.block.BlockDestroyEvent;
+import com.github.spark.lib.events.RegisterEvents;
 import io.papermc.paper.event.block.BlockBreakBlockEvent;
 import it.unimi.dsi.fastutil.ints.IntLists;
 import org.bukkit.Location;
@@ -23,7 +24,7 @@ import org.eclipse.aether.metadata.Metadata;
 
 import java.util.ArrayList;
 import java.util.List;
-
+@RegisterEvents
 public class FireStaff implements Listener {
     @EventHandler
     public void onRightClick(PlayerInteractEvent event) {
@@ -45,6 +46,7 @@ public class FireStaff implements Listener {
                 //Cow cow = player.getWorld().spawn(fireballSpawnPoint, Cow.class);
                 Fireball fireball = player.getWorld().spawn(fireballSpawnPoint, Fireball.class);
                 fireball.setDirection(direction);
+                fireball.setYield(0);
                 fireball.setVelocity(direction.normalize().multiply(fireballVelocity));
                 //fireball.addPassenger(cow);
             }

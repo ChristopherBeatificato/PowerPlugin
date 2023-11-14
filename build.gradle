@@ -1,12 +1,21 @@
 plugins {
     id 'java'
     id("xyz.jpenilla.run-paper") version "2.2.0"
+    id 'com.github.johnrengelman.shadow' version '7.1.2'
 }
 
 group = 'com.power.plugin'
 version = '1.0-SNAPSHOT'
 
 repositories {
+    maven {
+        name = 'GitHubPackages'
+        url = uri("https://maven.pkg.github.com/VincentCosta6/spark")
+        credentials {
+            username = "VincentCosta6"
+            password = "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"
+        }
+    }
     mavenCentral()
     maven {
         name = "papermc-repo"
@@ -19,6 +28,7 @@ repositories {
 }
 
 dependencies {
+    implementation 'com.github:spark:0.7.4-SNAPSHOT' // replace `0.7.3-SNAPSHOT` with the version you want to use
     compileOnly "io.papermc.paper:paper-api:1.20.2-R0.1-SNAPSHOT"
 }
 
@@ -52,4 +62,9 @@ processResources {
     filesMatching('plugin.yml') {
         expand props
     }
+}
+shadowJar {
+    archiveBaseName.set(rootProject.name)
+    archiveVersion.set(version)
+    archiveClassifier.set('')
 }

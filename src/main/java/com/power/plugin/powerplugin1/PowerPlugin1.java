@@ -1,15 +1,20 @@
 package com.power.plugin.powerplugin1;
 
+import com.github.spark.lib.SparkContext;
+import com.github.spark.lib.SparkPlugin;
 import com.power.plugin.powerplugin1.Events.*;
 import com.power.plugin.powerplugin1.Events.Staffs.*;
 import org.bukkit.plugin.java.JavaPlugin;
 
-public final class PowerPlugin1 extends JavaPlugin {
+public final class PowerPlugin1 extends SparkPlugin {
+    @Override
+    public void onBeforeFrameworkInitialize() {
+        SparkContext.setBasePackage("com.power.plugin.powerplugin1");
+    }
 
     @Override
-    public void onEnable() {
+    public void onFrameworkEnable() {
         System.out.println("Hello World!");
-        registerListeners();
     }
 
     @Override

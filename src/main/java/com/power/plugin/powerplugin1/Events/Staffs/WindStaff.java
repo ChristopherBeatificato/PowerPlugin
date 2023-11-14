@@ -1,5 +1,6 @@
 package com.power.plugin.powerplugin1.Events.Staffs;
 
+import com.github.spark.lib.events.RegisterEvents;
 import org.bukkit.Material;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
@@ -9,7 +10,7 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
-
+@RegisterEvents
 public class WindStaff implements Listener {
     @EventHandler
     public void onPlayerInteract(PlayerInteractEvent event){

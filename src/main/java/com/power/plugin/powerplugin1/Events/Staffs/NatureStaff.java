@@ -1,5 +1,6 @@
 package com.power.plugin.powerplugin1.Events.Staffs;
 
+import com.github.spark.lib.events.RegisterEvents;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.*;
@@ -10,7 +11,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.jetbrains.annotations.Nullable;
-
+@RegisterEvents
 public class NatureStaff implements Listener {
     private Entity ExperienceOrb;
 @EventHandler
