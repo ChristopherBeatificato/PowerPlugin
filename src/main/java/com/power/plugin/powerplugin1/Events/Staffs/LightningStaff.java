@@ -1,6 +1,8 @@
 package com.power.plugin.powerplugin1.Events.Staffs;
 
-import com.github.spark.lib.events.RegisterEvents;
+import com.github.spark.lib.events.annotations.RegisterEvents;
+import com.github.spark.lib.services.custom.MetadataService;
+import com.google.inject.Inject;
 import com.power.plugin.powerplugin1.Constants.Constants;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -13,6 +15,8 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.RayTraceResult;
 @RegisterEvents
 public class LightningStaff implements Listener {
+    @Inject
+    MetadataService metaService;
     @EventHandler
     public void onPlayerInteract(PlayerInteractEvent event) {
         ItemStack stack = event.getItem();

@@ -1,7 +1,8 @@
 package com.power.plugin.powerplugin1.Events.Staffs;
 
-import n
-com.github.spark.lib.events.RegisterEvents;
+import com.github.spark.lib.events.annotations.RegisterEvents;
+import com.github.spark.lib.services.custom.MetadataService;
+import com.google.inject.Inject;
 import com.power.plugin.powerplugin1.Constants.Constants;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -14,6 +15,8 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.RayTraceResult;
 @RegisterEvents
 public class EarthStaff implements Listener {
+    @Inject
+    MetadataService metaService;
     @EventHandler
     public void onPlayerInteraction(PlayerInteractEvent event){
         if (event.getAction().isRightClick()){
@@ -29,11 +32,9 @@ public class EarthStaff implements Listener {
                     }
                     Block hitBlock = ray.getHitBlock();
                     World world = hitBlock.getWorld();
-                    if (1 == 1) {
-                        hitBlock.getWorld().setType(new Location(world, hitBlock.getX(), hitBlock.getY() + 1, hitBlock.getZ()), Material.STONE);
-                        hitBlock.getWorld().setType(new Location(world, hitBlock.getX(), hitBlock.getY() + 2, hitBlock.getZ()), Material.STONE);
-                        hitBlock.getWorld().setType(new Location(world, hitBlock.getX(), hitBlock.getY() + 3, hitBlock.getZ()), Material.STONE);
-                    }
+                    hitBlock.getWorld().setType(new Location(world, hitBlock.getX(), hitBlock.getY() + 1, hitBlock.getZ()), Material.STONE);
+                    hitBlock.getWorld().setType(new Location(world, hitBlock.getX(), hitBlock.getY() + 2, hitBlock.getZ()), Material.STONE);
+                    hitBlock.getWorld().setType(new Location(world, hitBlock.getX(), hitBlock.getY() + 3, hitBlock.getZ()), Material.STONE);
                 }
             }
         }

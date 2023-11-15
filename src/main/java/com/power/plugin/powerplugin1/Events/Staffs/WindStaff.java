@@ -1,6 +1,8 @@
 package com.power.plugin.powerplugin1.Events.Staffs;
 
-import com.github.spark.lib.events.RegisterEvents;
+import com.github.spark.lib.events.annotations.RegisterEvents;
+import com.github.spark.lib.services.custom.MetadataService;
+import com.google.inject.Inject;
 import com.power.plugin.powerplugin1.Constants.Constants;
 import org.bukkit.Material;
 import org.bukkit.entity.Entity;
@@ -16,6 +18,8 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 @RegisterEvents
 public class WindStaff implements Listener {
+    @Inject
+    MetadataService metaService;
     @EventHandler
     public void onPlayerInteract(PlayerInteractEvent event) {
         if (event.getAction().isLeftClick()) {

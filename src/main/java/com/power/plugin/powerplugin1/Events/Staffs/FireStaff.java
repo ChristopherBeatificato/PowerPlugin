@@ -1,6 +1,8 @@
 package com.power.plugin.powerplugin1.Events.Staffs;
 
-import com.github.spark.lib.events.RegisterEvents;
+import com.github.spark.lib.events.annotations.RegisterEvents;
+import com.github.spark.lib.services.custom.MetadataService;
+import com.google.inject.Inject;
 import com.power.plugin.powerplugin1.Constants.Constants;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -14,6 +16,8 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.Vector;
 @RegisterEvents
 public class FireStaff implements Listener {
+    @Inject
+    MetadataService metaService;
     @EventHandler
     public void onRightClick(PlayerInteractEvent event) {
         if (event.getAction().isRightClick()) {
@@ -24,7 +28,7 @@ public class FireStaff implements Listener {
                 return;
             }
             if (stack.getType() == Material.STICK) {
-                if (metaService.getMetaBoolean(stack, Constants.WANDFIRE_KEY)) {
+                if (metaService.getMetaBoolean(stack, Constants.WANDFIRE_KEY) == Boolean.TRUE) {
                     int distanceToSpawn = 2;
                     double fireballVelocity = 0.8;
 
@@ -56,7 +60,7 @@ public class FireStaff implements Listener {
                 boolean hasAmethyst = false;
                 for (ItemStack stack : player.getInventory().getContents()) {
                     if (stack != null && stack.getType() == Material.STICK) {
-                        if (metaService.getMetaBoolean(stack, Constants.WANDFIRE_KEY)) {
+                        if (metaService.getMetaBoolean(stack, Constants.WANDFIRE_KEY) == Boolean.TRUE) {
                             hasAmethyst = true;
                             break;
                         }

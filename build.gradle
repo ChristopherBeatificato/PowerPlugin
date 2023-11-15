@@ -19,10 +19,10 @@ repositories {
     }
     maven {
         name = 'GitHubPackages'
-        url = uri("https://maven.pkg.github .com/VincentCosta6/spark")
+        url = uri("https://maven.pkg.github.com/VincentCosta6/spark")
         credentials {
             username = "VincentCosta6"
-            password = "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"// make sure you do not commit these values directly
+            password = "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"// make sure you do not commit these values directly
         }
     }
 }

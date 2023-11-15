@@ -1,6 +1,6 @@
 package com.power.plugin.powerplugin1.Events.Staffs;
 
-import com.github.spark.lib.events.RegisterEvents;
+import com.github.spark.lib.events.annotations.RegisterEvents;
 import com.github.spark.lib.services.custom.MetadataService;
 import com.google.inject.Inject;
 import com.power.plugin.powerplugin1.Constants.Constants;

@@ -1,6 +1,6 @@
 package com.power.plugin.powerplugin1.Events;
 
-import com.github.spark.lib.events.RegisterEvents;
+import com.github.spark.lib.events.annotations.RegisterEvents;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
