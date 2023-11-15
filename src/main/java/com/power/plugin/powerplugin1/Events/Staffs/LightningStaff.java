@@ -1,6 +1,7 @@
 package com.power.plugin.powerplugin1.Events.Staffs;
 
 import com.github.spark.lib.events.RegisterEvents;
+import com.power.plugin.powerplugin1.Constants.Constants;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
@@ -18,15 +19,17 @@ public class LightningStaff implements Listener {
         if (stack == null) {
             return;
         }
-        if (stack.getType() == Material.LIGHTNING_ROD) {
-            RayTraceResult ray = event.getPlayer().rayTraceBlocks(120);
-            if (ray == null || ray.getHitBlock() == null) {
-                return;
+        if (stack.getType() == Material.STICK) {
+            if (metaService.getMetaBoolean(stack, Constants.WANDLIGHTNING_KEY)) {
+                RayTraceResult ray = event.getPlayer().rayTraceBlocks(120);
+                if (ray == null || ray.getHitBlock() == null) {
+                    return;
+                }
+                Block hitBlock = ray.getHitBlock();
+                World world = hitBlock.getWorld();
+                world.strikeLightning(new Location(world, hitBlock.getX(), hitBlock.getY() + 1, hitBlock.getZ()));
+                world.createExplosion(new Location(world, hitBlock.getX(), hitBlock.getY() + 1, hitBlock.getZ()), 1.3F, true, false);
             }
-            Block hitBlock = ray.getHitBlock();
-            World world = hitBlock.getWorld();
-            world.strikeLightning(new Location(world, hitBlock.getX(), hitBlock.getY() + 1, hitBlock.getZ()));
-            world.createExplosion(new Location(world, hitBlock.getX(), hitBlock.getY() + 1, hitBlock.getZ()), 1.3F, true, false);
         }
     }
 }

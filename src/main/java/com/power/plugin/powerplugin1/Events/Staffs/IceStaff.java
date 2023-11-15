@@ -25,7 +25,7 @@ public class IceStaff implements Listener {
                 return;
             }
             if (stack.getType() == Material.STICK) {
-                if (metaService.getMetaBoolean(stack, Constants.WAND_KEY)) {
+                if (metaService.getMetaBoolean(stack, Constants.WANDICE_KEY)) {
                     player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 20 * 8, 2));
                 }
             }

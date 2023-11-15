@@ -1,6 +1,7 @@
 package com.power.plugin.powerplugin1.Events.Staffs;
 
 import com.github.spark.lib.events.RegisterEvents;
+import com.power.plugin.powerplugin1.Constants.Constants;
 import org.bukkit.Material;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Mob;
@@ -16,7 +17,7 @@ import org.bukkit.potion.PotionEffectType;
 @RegisterEvents
 public class WindStaff implements Listener {
     @EventHandler
-    public void onPlayerInteract(PlayerInteractEvent event){
+    public void onPlayerInteract(PlayerInteractEvent event) {
         if (event.getAction().isLeftClick()) {
             Player player = event.getPlayer();
             ItemStack stack = event.getItem();
@@ -24,21 +25,15 @@ public class WindStaff implements Listener {
             if (stack == null) {
                 return;
             }
-            if (stack.getType() == Material.DIAMOND_HOE) {
-<<<<<<< Updated upstream
-                player.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, 20 * 8, 5));
-
-=======
-                    hasHoe = true;
+            if (stack.getType() == Material.STICK) {
+                if (metaService.getMetaBoolean(stack, Constants.WANDWIND_KEY)) {
+                    player.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, 20 * 8, 5));
                     return;
-            }
-            if (hasHoe) {
-                onEntityTarget();
-                player.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, 20 * 8, 1));
->>>>>>> Stashed changes
+                }
             }
         }
     }
+        @EventHandler
     public void onEntityTarget(EntityTargetEvent event){
         Mob mob = (Mob) event.getEntity().getNearbyEntities(5, 5, 5);
         mob.setTarget(null);

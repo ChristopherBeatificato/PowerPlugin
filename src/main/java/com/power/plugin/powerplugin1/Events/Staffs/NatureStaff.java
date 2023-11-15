@@ -1,6 +1,7 @@
 package com.power.plugin.powerplugin1.Events.Staffs;
 
 import com.github.spark.lib.events.RegisterEvents;
+import com.power.plugin.powerplugin1.Constants.Constants;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.*;
@@ -10,7 +11,6 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
-import org.jetbrains.annotations.Nullable;
 @RegisterEvents
 public class NatureStaff implements Listener {
     private Entity ExperienceOrb;
@@ -22,16 +22,17 @@ public class NatureStaff implements Listener {
             if (stack == null) {
                 return;
             }
-            if (stack.getType() == Material.VINE) {
-                player.damage(7, ExperienceOrb);
-                for (Player other: Bukkit.getOnlinePlayers()) {
-                    if (other.getLocation().distance(player.getLocation()) <= 5){
-                        other.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 20 * 4, 1));
-                        player.removePotionEffect(PotionEffectType.REGENERATION);
+            if (stack.getType() == Material.STICK) {
+                if (metaService.getMetaBoolean(stack, Constants.WANDNATURE_KEY)) {
+                    player.damage(7, ExperienceOrb);
+                    for (Player other : Bukkit.getOnlinePlayers()) {
+                        if (other.getLocation().distance(player.getLocation()) <= 5) {
+                            other.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 20 * 4, 1));
+                            player.removePotionEffect(PotionEffectType.REGENERATION);
+                        }
                     }
                 }
             }
-
         }
     }
 }
