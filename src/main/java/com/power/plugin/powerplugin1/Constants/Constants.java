@@ -7,5 +7,6 @@ public class Constants {
     public static final String WANDLIGHTNING_KEY = "wand-lightning";
     public static final String WANDNATURE_KEY = "wand-wind";
     public static final String WANDWIND_KEY = "wand-nature";
+    public static final String WANDEXPLOSIVE_KEY = "wand-explosive";
 
 }

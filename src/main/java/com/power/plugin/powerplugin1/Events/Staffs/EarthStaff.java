@@ -4,6 +4,7 @@ import com.github.spark.lib.events.annotations.RegisterEvents;
 import com.github.spark.lib.services.custom.MetadataService;
 import com.google.inject.Inject;
 import com.power.plugin.powerplugin1.Constants.Constants;
+import com.power.plugin.powerplugin1.DataStores.PlayerState;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
@@ -17,6 +18,8 @@ import org.bukkit.util.RayTraceResult;
 public class EarthStaff implements Listener {
     @Inject
     MetadataService metaService;
+    @Inject
+    PlayerState playerState;
     @EventHandler
     public void onPlayerInteraction(PlayerInteractEvent event){
         if (event.getAction().isRightClick()){
@@ -26,15 +29,17 @@ public class EarthStaff implements Listener {
             }
             if (stack.getType() == Material.STICK) {
                 if (metaService.getMetaBoolean(stack, Constants.WANDEARTH_KEY)) {
-                    RayTraceResult ray = event.getPlayer().rayTraceBlocks(120);
-                    if (ray == null || ray.getHitBlock() == null) {
-                        return;
+                    if (playerState.selectedClass.equalsIgnoreCase("Earth")) {
+                        RayTraceResult ray = event.getPlayer().rayTraceBlocks(120);
+                        if (ray == null || ray.getHitBlock() == null) {
+                            return;
+                        }
+                        Block hitBlock = ray.getHitBlock();
+                        World world = hitBlock.getWorld();
+                        hitBlock.getWorld().setType(new Location(world, hitBlock.getX(), hitBlock.getY() + 1, hitBlock.getZ()), Material.STONE);
+                        hitBlock.getWorld().setType(new Location(world, hitBlock.getX(), hitBlock.getY() + 2, hitBlock.getZ()), Material.STONE);
+                        hitBlock.getWorld().setType(new Location(world, hitBlock.getX(), hitBlock.getY() + 3, hitBlock.getZ()), Material.STONE);
                     }
-                    Block hitBlock = ray.getHitBlock();
-                    World world = hitBlock.getWorld();
-                    hitBlock.getWorld().setType(new Location(world, hitBlock.getX(), hitBlock.getY() + 1, hitBlock.getZ()), Material.STONE);
-                    hitBlock.getWorld().setType(new Location(world, hitBlock.getX(), hitBlock.getY() + 2, hitBlock.getZ()), Material.STONE);
-                    hitBlock.getWorld().setType(new Location(world, hitBlock.getX(), hitBlock.getY() + 3, hitBlock.getZ()), Material.STONE);
                 }
             }
         }

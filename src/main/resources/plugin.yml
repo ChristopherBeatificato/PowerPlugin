@@ -9,4 +9,7 @@ commands:
   wand:
     description: Gives the player a wand
     usage: /wand
+  class:
+    description: Updates the players selected class
+    usage: /class [element]
 

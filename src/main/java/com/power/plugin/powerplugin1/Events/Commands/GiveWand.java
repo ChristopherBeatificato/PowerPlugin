@@ -6,14 +6,15 @@ import com.github.spark.lib.commands.dto.CommandContext;
 import com.github.spark.lib.services.custom.MetadataService;
 import com.google.inject.Inject;
 import com.power.plugin.powerplugin1.Constants.Constants;
+import com.power.plugin.powerplugin1.DataStores.PlayerState;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 @CommandHandler(root = true, name = "wand")
 public class GiveWand implements Command {
-    @Inject
-    MetadataService metaService;
+    @Inject MetadataService metaService;
+    @Inject PlayerState playerState;
     @Override
     public boolean onCommand(CommandContext commandContext) {
         Player player = commandContext.player();
@@ -54,6 +55,13 @@ public class GiveWand implements Command {
             else if (wandType.equalsIgnoreCase("Earth")) {
                 ItemStack stack = new ItemStack(Material.STICK);
                 metaService.setMeta(stack, Constants.WANDEARTH_KEY, true);
+                player.getInventory().addItem(stack);
+                return true;
+            }
+            else if (wandType.equalsIgnoreCase("Explosive")) {
+
+                ItemStack stack = new ItemStack(Material.STICK);
+                metaService.setMeta(stack, Constants.WANDEXPLOSIVE_KEY, true);
                 player.getInventory().addItem(stack);
                 return true;
             }

@@ -4,6 +4,7 @@ import com.github.spark.lib.events.annotations.RegisterEvents;
 import com.github.spark.lib.services.custom.MetadataService;
 import com.google.inject.Inject;
 import com.power.plugin.powerplugin1.Constants.Constants;
+import com.power.plugin.powerplugin1.DataStores.PlayerState;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -16,6 +17,8 @@ import org.bukkit.potion.PotionEffectType;
 public class IceStaff implements Listener {
     @Inject
     MetadataService metaService;
+    @Inject
+    PlayerState playerState;
     @EventHandler
     public void onLeftClick(PlayerInteractEvent event) {
         if (event.getAction().isLeftClick()) {
@@ -26,7 +29,12 @@ public class IceStaff implements Listener {
             }
             if (stack.getType() == Material.STICK) {
                 if (metaService.getMetaBoolean(stack, Constants.WANDICE_KEY)) {
-                    player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 20 * 8, 2));
+                    if (playerState.selectedClass.equalsIgnoreCase("Earth")) {
+                        if (playerState.mana > 10) {
+                            player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 20 * 8, 2));
+                            playerState.mana -= -10;
+                        }
+                    }
                 }
             }
         }
